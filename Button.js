@@ -48,8 +48,8 @@ const Button2 = ({ text, special2 }) => (
   </TouchableOpacity>
 );
 
-const Button = ({ text, special }) => (
-  <TouchableOpacity style={special ? styles.specialContainer : styles.container} >
+const Button = ({ text, special, onPress }) => (
+  <TouchableOpacity onPress={onPress} style={special ? styles.specialContainer : styles.container} >
     <Text style={special ? styles.specialText : styles.text}>{text}</Text>
   </TouchableOpacity>
 );
