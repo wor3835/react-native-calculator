@@ -14,10 +14,25 @@ export const pressNum = num => ({
   payload: num,
 });
 
-export const reducer = (state = '0', { type, payload }) => {
+export const reducer = (state = { stack: [], inputState: 'new' }, { type, payload }) => {
   switch (type) {
     case PRESS_NUM:
-      return state + payload;
+      if (state.inputState === 'append') {
+        return {
+          stack: [(state.stack[0] || '0') + payload, ...state.stack.slice(1)],
+          inputState: 'append',
+        };
+      } else if (state.inputState === 'replace') {
+        return {
+          stack: [payload, ...state.stack.slice(1)],
+          inputState: 'append',
+        };
+      }
+      return {
+        ...state,
+        stack: [payload, ...state.stack.slice(1)],
+        inputState: 'append',
+      };
     default:
       return state;
   }

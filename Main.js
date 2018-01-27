@@ -40,10 +40,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const CalcApp = ({ currentNum, pressNumDispatch }) => (
+const CalcApp = ({ calcState: { stack, inputState }, pressNumDispatch }) => (
   <View style={styles.container}>
     <View style={styles.upper}>
-      <Text style={styles.number}>{currentNum}</Text>
+      <Text style={styles.number}>{stack[0] || 0}</Text>
     </View>
     <View style={styles.lower}>
       <View style={styles.row}>
@@ -73,7 +73,7 @@ const CalcApp = ({ currentNum, pressNumDispatch }) => (
 );
 
 export default connect(
-  state => ({ currentNum: state }),
+  state => ({ calcState: state }),
   dispatch =>
     bindActionCreators(
       {

@@ -11,7 +11,7 @@ const baseContainer = {
 
 const normText = {
   fontSize: 70,
-  fontWeight: 'normal'
+  fontWeight: 'normal',
 };
 
 const styles = StyleSheet.create({
