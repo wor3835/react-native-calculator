@@ -5,12 +5,13 @@ const baseContainer = {
   backgroundColor: '#fafafa',
   alignItems: 'center',
   justifyContent: 'center',
-  borderRightWidth: 1,
-  borderColor: '#fff',
+  borderWidth: 1,
+  borderColor: 'red',
 };
 
 const normText = {
-  fontSize: 50,
+  fontSize: 70,
+  fontWeight: 'normal',
 };
 
 const styles = StyleSheet.create({
@@ -20,14 +21,19 @@ const styles = StyleSheet.create({
     ...baseContainer,
   },
   specialContainer: {
-    flex: 2,
+    flex: 3.05,
     backgroundColor: '#9bc23c',
+    ...baseContainer,
+  },
+  special2Container: {
+    flex: 1,
+    backgroundColor: 'red',
     ...baseContainer,
   },
   text: normText,
   specialText: {
     ...normText,
-    color: '#fff',
+    color: '#AAAAAA',
   },
 });
 

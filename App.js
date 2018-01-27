@@ -29,6 +29,12 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: 'red',
   },
+  column: {
+    flex: 1,
+    flexDirection: 'column',
+    borderBottomWidth: 1,
+    borderColor: 'red',
+  },
 });
 
 const CalcApp = () => (
@@ -38,8 +44,8 @@ const CalcApp = () => (
     </View>
     <View style={styles.lower}>
       <View style={styles.row}>
-        <Button text="clear" />
-        <Button text="÷" />
+        <Button text="clear" special />
+        <Button text="÷" special2 />
       </View>
       <View style={styles.row}>
         <Button text="7" />
