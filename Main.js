@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Button2 from './Button';
+import { onPress, pressNum } from './modules';
 import Button from './Button';
-
 
 const styles = StyleSheet.create({
   container: {
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const CalcApp = ({ currentNum }) => (
+const CalcApp = ({ currentNum, pressNumDispatch }) => (
   <View style={styles.container}>
     <View style={styles.upper}>
       <Text style={styles.number}>{currentNum}</Text>
@@ -51,25 +51,34 @@ const CalcApp = ({ currentNum }) => (
         <Button text="÷" special2 />
       </View>
       <View style={styles.row}>
-        <Button text="7" />
-        <Button text="8" />
-        <Button text="9" />
+        <Button text="7" onPress={pressNumDispatch} />
+        <Button text="8" onPress={pressNumDispatch} />
+        <Button text="9" onPress={pressNumDispatch} />
         <Button text="-" special2 />
       </View>
       <View style={styles.row}>
-        <Button text="4" />
-        <Button text="5" />
-        <Button text="6" />
+        <Button text="4" onPress={pressNumDispatch} />
+        <Button text="5" onPress={pressNumDispatch} />
+        <Button text="6" onPress={pressNumDispatch} />
         <Button text="+" special2 />
       </View>
       <View style={styles.row}>
-        <Button text="1" />
-        <Button text="2" />
-        <Button text="3" />
+        <Button text="1" onPress={pressNumDispatch} />
+        <Button text="2" onPress={pressNumDispatch} />
+        <Button text="3" onPress={pressNumDispatch} />
         <Button text="=" special2 />
       </View>
     </View>
   </View>
 );
 
-export default connect(state => ({currentNum: state }))(CalcApp);
+export default connect(
+  state => ({ currentNum: state }),
+  dispatch =>
+    bindActionCreators(
+      {
+        pressNumDispatch: pressNum,
+      },
+      dispatch,
+    ),
+)(CalcApp);
