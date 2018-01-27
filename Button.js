@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 
 const baseContainer = {
   backgroundColor: '#fafafa',
@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
   specialText: {
     ...normText,
     color: '#AAAAAA',
+    fontSize: 50,
   },
   special2text: {
     ...normText,
@@ -42,15 +43,15 @@ const styles = StyleSheet.create({
 });
 
 const Button2 = ({ text, special2 }) => (
-  <View style={special2 ? styles.special2Container : styles.container} >
+  <TouchableOpacity style={special2 ? styles.special2Container : styles.container} >
     <Text style={special2 ? styles.special2Text : styles.text}>{text}</Text>
-  </View>
+  </TouchableOpacity>
 );
 
 const Button = ({ text, special }) => (
-  <View style={special ? styles.specialContainer : styles.container} >
+  <TouchableOpacity style={special ? styles.specialContainer : styles.container} >
     <Text style={special ? styles.specialText : styles.text}>{text}</Text>
-  </View>
+  </TouchableOpacity>
 );
 
 export default Button2 && Button;
