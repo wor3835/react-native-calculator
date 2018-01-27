@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     ...baseContainer,
   },
   special2Container: {
-    flex: 1,
+    flex: 0,
     backgroundColor: 'red',
     ...baseContainer,
   },
@@ -35,12 +35,22 @@ const styles = StyleSheet.create({
     ...normText,
     color: '#AAAAAA',
   },
+  special2text: {
+    ...normText,
+    color: 'white',
+  },
 });
 
+const Button2 = ({ text, special2 }) => (
+  <View style={special2 ? styles.special2Container : styles.container} >
+    <Text style={special2 ? styles.special2Text : styles.text}>{text}</Text>
+  </View>
+);
+
 const Button = ({ text, special }) => (
-  <View style={special ? styles.specialContainer : styles.container}>
+  <View style={special ? styles.specialContainer : styles.container} >
     <Text style={special ? styles.specialText : styles.text}>{text}</Text>
   </View>
 );
 
-export default Button;
+export default Button2 && Button;
