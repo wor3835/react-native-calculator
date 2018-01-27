@@ -8,14 +8,24 @@
 */
 
 const PRESS_NUM = 'PRESS_NUM';
+const EQUALS = 'EQUALS';
 
 export const pressNum = num => ({
   type: PRESS_NUM,
   payload: num,
 });
 
+export const equals = () => ({
+  type: EQUALS,
+});
+
 export const reducer = (state = { stack: [], inputState: 'new' }, { type, payload }) => {
   switch (type) {
+    case EQUALS:
+      return {
+        stack: [state.stack[0] || '0', ...state.stack],
+        inputState: 'replace',
+      };
     case PRESS_NUM:
       if (state.inputState === 'append') {
         return {
