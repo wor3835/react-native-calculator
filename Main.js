@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { onPress, pressNum, equals } from './modules';
+import { onPress, pressNum, equals, opp } from './modules';
 import Button from './Button';
 
 const baseNum = {
@@ -64,7 +64,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const CalcApp = ({ calcState: { stack, inputState }, pressNumDispatch, equalsAction }) => (
+const CalcApp = ({
+  calcState: { stack, inputState },
+  pressNumDispatch,
+  equalsAction,
+  operationAction,
+}) => (
   <View style={styles.container}>
     <View style={styles.upper}>
       <Text style={styles[inputState]}>{stack[0] || 0}</Text>
@@ -78,7 +83,7 @@ const CalcApp = ({ calcState: { stack, inputState }, pressNumDispatch, equalsAct
         <Button text="7" onPress={pressNumDispatch} />
         <Button text="8" onPress={pressNumDispatch} />
         <Button text="9" onPress={pressNumDispatch} />
-        <Button text="-" special2 />
+        <Button text="-" onPress={operationAction} special2 />
       </View>
       <View style={styles.row}>
         <Button text="4" onPress={pressNumDispatch} />
@@ -103,6 +108,7 @@ export default connect(
       {
         pressNumDispatch: pressNum,
         equalsAction: equals,
+        operationAction: opp,
       },
       dispatch,
     ),
