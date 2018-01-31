@@ -1,45 +1,58 @@
-import React from 'react';
-import { StyleSheet, TouchableOpacity, Text } from 'react-native';
+import React from "react";
+import { StyleSheet, TouchableOpacity, Text } from "react-native";
 
-const baseContainer = {
-  backgroundColor: '#fafafa',
-  alignItems: 'center',
-  justifyContent: 'center',
-  borderWidth: 1,
-  borderColor: 'red',
-};
-
-const normText = {
+/*
+Default text without any special text, used for number buttons.
+*/
+const defaultText = {
   fontSize: 70,
-  fontWeight: 'normal',
+  fontWeight: "normal"
 };
 
+/*
+Container with all background elements
+*/
+const Background = {
+  backgroundColor: "#fafafa",
+  alignItems: "center",
+  justifyContent: "center",
+  borderWidth: 1,
+  borderColor: "red"
+};
+
+/*
+Contains all styles for app.
+*/
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fafafa',
-    ...baseContainer,
-  },
-  newStyleContainer: {
-    flex: 3.05,
-    backgroundColor: '#9bc23c',
-    ...baseContainer,
-  },
-  newStyle2Container: {
-    flex: 0,
-    backgroundColor: 'red',
-    ...baseContainer,
-  },
-  text: normText,
+  text: defaultText,
   newStyleText: {
-    ...normText,
-    color: '#AAAAAA',
-    fontSize: 50,
+    // makes text red
+    ...defaultText,
+    color: "#AAAAAA",
+    fontSize: 50
   },
   newStyle2text: {
-    ...normText,
-    color: 'white',
+    // makes text white
+    ...defaultText,
+    color: "white"
   },
+  container: {
+    flex: 1,
+    backgroundColor: "#fafafa",
+    ...Background
+  },
+  newStyleContainer: {
+    //  increases flex
+    flex: 3.05,
+    backgroundColor: "#9bc23c",
+    ...Background
+  },
+  newStyle2Container: {
+    // decreases flex
+    flex: 0,
+    backgroundColor: "red",
+    ...Background
+  }
 });
 
 const Function2 = ({ text, newStyle2 }) => (

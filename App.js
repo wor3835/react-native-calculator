@@ -1,11 +1,17 @@
-import React from 'react';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
+/*
+Runs the main app.
+*/
 
-import { reducer } from './operations';
-import Main from './Main';
+import React from "react";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import { SolveFunc } from "./operations";
+import Main from "./Main";
 
-const store = createStore(reducer);
+/*
+Read state and dispatch changes.
+*/
+const store = createStore(SolveFunc);
 
 export default () => (
   <Provider store={store}>

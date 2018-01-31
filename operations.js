@@ -1,81 +1,93 @@
 /*
-{
-    type: 'CONST'
-    payload: {
-        data
-    }
-}
+Performs the postfix calculations
 */
+const OPP = "OPP"; // operation selected
+const CLEAR = "CLEAR"; // clear button
+const NUMBER_PRESSED = "NUMBER_PRESSED"; // number button pressed
+const EQUALS = "EQUALS"; // equals operation selected
 
-const PRESS_NUM = 'PRESS_NUM';
-const EQUALS = 'EQUALS';
-const OPP = 'OPP';
-const CLEAR = 'CLEAR';
+/*
+start state, used for clear function.
+*/
+const start = { stack: [], state: "replace" };
 
-export const pressNum = num => ({
-  type: PRESS_NUM,
-  payload: num,
-});
-
-export const equals = () => ({
-  type: EQUALS,
-});
-
-export const opp = op => ({
-  type: OPP,
-  payload: op,
-});
-
-export const clear = () => ({
-  type: CLEAR,
-});
-
-const performOp = (x, y, op) => {
-  const num1 = parseFloat(x);
-  const num2 = parseFloat(y);
-  if (op === 'pow') {
-    return num1 ** num2;
-  } else if (op === '+') {
-    return num2 + num1;
-  } else if (op === '-') {
-    return num2 - num1;
-  } else if (op === '÷') {
-    return num2 / num1;
+/*
+Givene to integers and an operation, the function evaluates the expression
+*/
+const performOp = (num1, num2, operation) => {
+  const number1 = parseFloat(num1);
+  const number2 = parseFloat(num2);
+  if (operation === "÷") {
+    // division operation
+    return number2 / number1;
+  } else if (operation === "-") {
+    // subtraction operation
+    return number2 - number1;
+  } else if (operation === "+") {
+    // addition operation
+    return number2 + number1;
   }
-  return 0;
 };
 
-const initial = { stack: [], state: 'replace' };
+/*
+Function called when clear is pressed.
+*/
+export const clear = () => ({
+  type: CLEAR
+});
 
-export const reducer = (state = { stack: [], state: 'replace' }, { type, payload }) => {
+/*
+Function called when /,-, or + is pressed. Returns operation of button pressed.
+*/
+export const opp = op => ({
+  type: OPP, // operation type
+  ans: op // specific operation
+});
+
+/*
+Function called when number is pressed. Returns integer value of button.
+*/
+export const pressNum = num => ({
+  type: NUMBER_PRESSED,
+  ans: num // integer
+});
+
+/*
+Function called when equals symbol is pressed.
+*/
+export const equals = () => ({
+  type: EQUALS // equals symbol
+});
+
+export const SolveFunc = (
+  state = { stack: [], state: "replace" },
+  { type, ans }
+) => {
   switch (type) {
-    case CLEAR:
-      return initial;
-    case OPP:
+    case EQUALS: // equals function called
       return {
-        stack: [`${performOp(state.stack[0], state.stack[1], payload)}`, ...state.stack.slice(2)],
-        state: 'replace',
+        stack: [state.stack[0] || "0", ...state.stack],
+        state: "replace"
       };
-    case EQUALS:
+    case CLEAR: // clear function called, return initial state
+      return start;
+    case OPP: // operation selected, call performOp
       return {
-        stack: [state.stack[0] || '0', ...state.stack],
-        state: 'replace',
+        stack: [`${performOp(state.stack[0], state.stack[1], ans)}`],
+        state: "replace"
       };
-    case PRESS_NUM:
-      if (state.state === 'append') {
+    case NUMBER_PRESSED: // number button pressed
+      if (state.state === "replace") {
+        // put new number on answer bar
         return {
-          stack: [(state.stack[0] || '0') + payload, ...state.stack.splice(1)],
-          state: 'append',
+          stack: [ans, ...state.stack.splice(1)],
+          state: "append"
         };
-      } else if (state.state === 'replace') {
+      } else if (state.state === "append") {
+        // append number to back of current number
         return {
-          stack: [payload, ...state.stack.splice(1)],
-          state: 'append',
-        };
-      } else if (state.state === 'push') {
-        return {
-          stack: [payload, ...state.stack],
-          state: 'append',
+          stack: [(state.stack[0] || "0") + ans, ...state.stack.splice(1)],
+          state: "append"
         };
       }
       break;
