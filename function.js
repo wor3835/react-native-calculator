@@ -20,43 +20,43 @@ const styles = StyleSheet.create({
     backgroundColor: '#fafafa',
     ...baseContainer,
   },
-  specialContainer: {
+  newStyleContainer: {
     flex: 3.05,
     backgroundColor: '#9bc23c',
     ...baseContainer,
   },
-  special2Container: {
+  newStyle2Container: {
     flex: 0,
     backgroundColor: 'red',
     ...baseContainer,
   },
   text: normText,
-  specialText: {
+  newStyleText: {
     ...normText,
     color: '#AAAAAA',
     fontSize: 50,
   },
-  special2text: {
+  newStyle2text: {
     ...normText,
     color: 'white',
   },
 });
 
-const Button2 = ({ text, special2 }) => (
+const Function2 = ({ text, newStyle2 }) => (
   <TouchableOpacity
-    style={special2 ? styles.special2Container : styles.container}
+    style={newStyle2 ? styles.newStyle2Container : styles.container}
   >
-    <Text style={special2 ? styles.special2Text : styles.text}>{text}</Text>
+    <Text style={newStyle2 ? styles.newStyle2Text : styles.text}>{text}</Text>
   </TouchableOpacity>
 );
 
-const Button = ({ text, special, onPress }) => (
+const Function = ({ text, newStyle, onPress }) => (
   <TouchableOpacity
     onPress={() => onPress(text)}
-    style={special ? styles.specialContainer : styles.container}
+    style={newStyle ? styles.newStyleContainer : styles.container}
   >
-    <Text style={special ? styles.specialText : styles.text}>{text}</Text>
+    <Text style={newStyle ? styles.newStyleText : styles.text}>{text}</Text>
   </TouchableOpacity>
 );
 
-export default Button2 && Button;
+export default Function2 && Function;

@@ -1,11 +1,22 @@
+/*
+Author: William Raffaelle
+Date: 1/31/2018
+
+React-native-calculator that evaluates postfix expressions.
+
+*/
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { onPress, pressNum, equals, opp } from './modules';
-import Button from './Button';
+import { pressNum, equals, opp, clear } from './operations';
+import Function from './function';
 
-const baseNum = {
+
+/*
+Style of each number press pad.
+*/
+const NormalNumber = {
   color: '#fff',
   backgroundColor: '#423336',
   textAlign: 'right',
@@ -20,14 +31,40 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-
+  /*
+  Row of calculator.
+  */
+  row: {
+    flex: 1,
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderColor: 'red',
+  },
+  /*
+  Column of calculator.
+  */
+  column: {
+    flex: 1,
+    flexDirection: 'column',
+    borderBottomWidth: 1,
+    borderColor: 'red',
+  },
+  /*
+  Lower half of screen.
+  */
+  lower: {
+    flex: 1,
+  },
+  /*
+  Style of upper half of screen that contains the answer bar.
+  */
   upper: {
     paddingTop: 30,
     backgroundColor: '#423336',
   },
-  lower: {
-    flex: 1,
-  },
+  /*
+  Style of number on answer bar, default is 0.
+  */
   number: {
     color: '#fff',
     backgroundColor: '#423336',
@@ -38,78 +75,71 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: 'red',
   },
-  append: {
+  append: { // style used when a number is appended.
     color: '#fff',
-    ...baseNum,
+    ...NormalNumber,
   },
-  replace: {
+  replace: { // style used when a number is replaced.
     color: '#fff',
-    ...baseNum,
+    ...NormalNumber,
   },
-  new: {
+  new: { // style used when a new number is pushed.
     color: '#fff',
-    ...baseNum,
-  },
-  row: {
-    flex: 1,
-    flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderColor: 'red',
-  },
-  column: {
-    flex: 1,
-    flexDirection: 'column',
-    borderBottomWidth: 1,
-    borderColor: 'red',
+    ...NormalNumber,
   },
 });
 
-const CalcApp = ({
-  calcState: { stack, inputState },
-  pressNumDispatch,
-  equalsAction,
-  operationAction,
+/*
+Builds layout.
+*/
+const app = ({
+  CalculatorState: { stack, state },
+  PressNumberFunction,
+  EqualsFunction,
+  OppFunction,
+  ClearFunction,
 }) => (
   <View style={styles.container}>
     <View style={styles.upper}>
-      <Text style={styles[inputState]}>{stack[0] || 0}</Text>
+      <Text style={styles[state]}>{stack[0] || 0}</Text>
     </View>
     <View style={styles.lower}>
       <View style={styles.row}>
-        <Button text="clear" special />
-        <Button text="÷" special2 />
+        <Function text="clear" onPress={ClearFunction} newStyle />
+        <Function text="÷" onPress={OppFunction} newStyle2 />
       </View>
       <View style={styles.row}>
-        <Button text="7" onPress={pressNumDispatch} />
-        <Button text="8" onPress={pressNumDispatch} />
-        <Button text="9" onPress={pressNumDispatch} />
-        <Button text="-" onPress={operationAction} special2 />
+        <Function text="7" onPress={PressNumberFunction} />
+        <Function text="8" onPress={PressNumberFunction} />
+        <Function text="9" onPress={PressNumberFunction} />
+        <Function text="-" onPress={OppFunction} newStyle2 />
       </View>
       <View style={styles.row}>
-        <Button text="4" onPress={pressNumDispatch} />
-        <Button text="5" onPress={pressNumDispatch} />
-        <Button text="6" onPress={pressNumDispatch} />
-        <Button text="+" special2 />
+        <Function text="4" onPress={PressNumberFunction} />
+        <Function text="5" onPress={PressNumberFunction} />
+        <Function text="6" onPress={PressNumberFunction} />
+        <Function text="+" onPress={OppFunction} newStyle2 />
       </View>
       <View style={styles.row}>
-        <Button text="1" onPress={pressNumDispatch} />
-        <Button text="2" onPress={pressNumDispatch} />
-        <Button text="3" onPress={pressNumDispatch} />
-        <Button text="=" onPress={equalsAction} special2 />
+        <Function text="1" onPress={PressNumberFunction} />
+        <Function text="2" onPress={PressNumberFunction} />
+        <Function text="3" onPress={PressNumberFunction} />
+        <Function text="=" onPress={EqualsFunction} newStyle2 />
       </View>
     </View>
   </View>
 );
 
 export default connect(
-  state => ({ calcState: state }),
+  state => ({ CalculatorState: state }),
   dispatch =>
     bindActionCreators(
       {
-        pressNumDispatch: pressNum,
-        equalsAction: equals,
-        operationAction: opp,
+        PressNumberFunction: pressNum,
+        EqualsFunction: equals,
+        OppFunction: opp,
+        ClearFunction: clear,
       },
       dispatch,
     ),
-)(CalcApp);
+)(app);
