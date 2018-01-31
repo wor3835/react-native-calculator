@@ -26,7 +26,7 @@ Contains all styles for app.
 const styles = StyleSheet.create({
   text: defaultText,
   newStyleText: {
-    // makes text red
+    // makes text white
     ...defaultText,
     color: "#AAAAAA",
     fontSize: 50
@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
   newStyle2Container: {
     // decreases flex
     flex: 0,
-    backgroundColor: "red",
-    ...Background
+    backgroundColor: "#E43E4D",
+    color: "#E43E4D"
   }
 });
 
