@@ -5,90 +5,90 @@ Date: 1/31/2018
 React-native-calculator that evaluates postfix expressions.
 
 */
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { pressNum, equals, opp, clear } from "./operations";
-import Function from "./function";
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { pressNum, equals, opp, clear } from './operations';
+import Function from './function';
 
 /*
 Style of each number press pad.
 */
 const NormalNumber = {
-  color: "#fff",
-  backgroundColor: "#423336",
-  textAlign: "right",
+  color: '#fff',
+  backgroundColor: '#423336',
+  textAlign: 'right',
   padding: 10,
   fontSize: 85,
-  fontWeight: "normal",
+  fontWeight: 'normal',
   borderBottomWidth: 1,
-  borderColor: "red"
+  borderColor: 'red',
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
   /*
   Row of calculator.
   */
   row: {
     flex: 1,
-    flexDirection: "row",
+    flexDirection: 'row',
     borderBottomWidth: 1,
-    borderColor: "red"
+    borderColor: 'red',
   },
   /*
   Column of calculator.
   */
   column: {
     flex: 1,
-    flexDirection: "column",
+    flexDirection: 'column',
     borderBottomWidth: 1,
-    borderColor: "red"
+    borderColor: 'red',
   },
   /*
   Lower half of screen.
   */
   lower: {
-    flex: 1
+    flex: 1,
   },
   /*
   Style of upper half of screen that contains the answer bar.
   */
   upper: {
     paddingTop: 30,
-    backgroundColor: "#423336"
+    backgroundColor: '#423336',
   },
   /*
   Style of number on answer bar, default is 0.
   */
   number: {
-    color: "#fff",
-    backgroundColor: "#423336",
-    textAlign: "right",
+    color: '#fff',
+    backgroundColor: '#423336',
+    textAlign: 'right',
     padding: 10,
     fontSize: 85,
-    fontWeight: "normal",
+    fontWeight: 'normal',
     borderBottomWidth: 1,
-    borderColor: "red"
+    borderColor: 'red',
   },
   append: {
     // style used when a number is appended.
-    color: "#fff",
-    ...NormalNumber
+    color: '#fff',
+    ...NormalNumber,
   },
   replace: {
     // style used when a number is replaced.
-    color: "#fff",
-    ...NormalNumber
+    color: '#fff',
+    ...NormalNumber,
   },
   new: {
     // style used when a new number is pushed.
-    color: "#fff",
-    ...NormalNumber
-  }
+    color: '#fff',
+    ...NormalNumber,
+  },
 });
 
 /*
@@ -99,7 +99,7 @@ const app = ({
   PressNumberFunction,
   EqualsFunction,
   OppFunction,
-  ClearFunction
+  ClearFunction,
 }) => (
   <View style={styles.container}>
     <View style={styles.upper}>
@@ -140,8 +140,8 @@ export default connect(
         PressNumberFunction: pressNum,
         EqualsFunction: equals,
         OppFunction: opp,
-        ClearFunction: clear
+        ClearFunction: clear,
       },
-      dispatch
+      dispatch,
     )
 )(app);

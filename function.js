@@ -1,23 +1,23 @@
-import React from "react";
-import { StyleSheet, TouchableOpacity, Text } from "react-native";
+import React from 'react';
+import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 
 /*
 Default text without any special text, used for number buttons.
 */
 const defaultText = {
   fontSize: 70,
-  fontWeight: "normal"
+  fontWeight: 'normal',
 };
 
 /*
 Container with all background elements
 */
 const Background = {
-  backgroundColor: "#fafafa",
-  alignItems: "center",
-  justifyContent: "center",
+  backgroundColor: '#fafafa',
+  alignItems: 'center',
+  justifyContent: 'center',
   borderWidth: 1,
-  borderColor: "red"
+  borderColor: 'red',
 };
 
 /*
@@ -28,31 +28,31 @@ const styles = StyleSheet.create({
   newStyleText: {
     // makes text white
     ...defaultText,
-    color: "#AAAAAA",
-    fontSize: 50
+    color: '#AAAAAA',
+    fontSize: 50,
   },
   newStyle2text: {
     // makes text white
     ...defaultText,
-    color: "white"
+    color: 'white',
   },
   container: {
     flex: 1,
-    backgroundColor: "#fafafa",
-    ...Background
+    backgroundColor: '#fafafa',
+    ...Background,
   },
   newStyleContainer: {
     //  increases flex
     flex: 3.05,
-    backgroundColor: "#9bc23c",
-    ...Background
+    backgroundColor: '#9bc23c',
+    ...Background,
   },
   newStyle2Container: {
     // decreases flex
     flex: 0,
-    backgroundColor: "#E43E4D",
-    color: "#E43E4D"
-  }
+    backgroundColor: '#E43E4D',
+    color: '#E43E4D',
+  },
 });
 
 const Function2 = ({ text, newStyle2 }) => (
