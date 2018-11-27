@@ -5,6 +5,7 @@
   "devDependencies": {
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^8.2.1",
+    "babel-plugin-transform-react-jsx-source": "^6.22.0",
     "eslint": "^4.15.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
@@ -14,7 +15,8 @@
     "jest-cli": "^22.1.4",
     "jest-expo": "23.0.0",
     "react-native-scripts": "^2.0.1",
-    "react-test-renderer": "^16.0.0"
+    "react-test-renderer": "^16.0.0",
+    "schedule": "^0.4.0"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
@@ -29,11 +31,12 @@
   },
   "dependencies": {
     "@babel/core": "^7.1.6",
-    "expo": "^23.0.4",
+    "babel-core": "^6.26.3",
+    "expo": "^31.0.0",
     "native": "^0.3.3",
-    "react": "^16.2.0",
+    "react": "^16.5.0",
     "react-dom": "^16.2.0",
-    "react-native": "^0.57.7",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2"
   }
