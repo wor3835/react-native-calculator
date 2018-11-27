@@ -28,6 +28,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@babel/core": "^7.1.6",
     "expo": "^23.0.4",
     "native": "^0.3.3",
     "react": "^16.2.0",
