@@ -2,7 +2,7 @@
 
 Calculator created in React Native. Computes postfix expressions.
 
-For example, to do 5+5, the sequence of buttons is at follows:
+For example, to do 5+5, the sequence of buttons is as follows:
 
 5, =, 5, +
 
